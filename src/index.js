@@ -1,27 +1,21 @@
+import App from './App'
+import { ConnectedRouter } from 'connected-react-router'
+import { Provider } from 'react-redux'
 import React from 'react'
 import ReactDOM from 'react-dom'
 import './index.css'
-import App from './App'
+import configureStore, { history } from './configureStore'
 import * as serviceWorker from './serviceWorker'
-import { applyMiddleware, createStore } from 'redux'
-import { Provider } from 'react-redux'
-import reducers from './ducks'
-import logger from 'redux-logger'
-import promise from 'redux-promise-middleware'
-import thunk from 'redux-thunk'
 
-// Redux Middleware and Initial Store setup
-const middleware = [ thunk, promise ]
-if (process.env.NODE_ENV !== 'production') {
-  middleware.push(logger)
-}
 // TODO: Add dynamic config to preload redux-store
-const store = createStore(reducers, {}, applyMiddleware(...middleware))
+const store = configureStore()
 
 // Render the application
 ReactDOM.render(
   <Provider store={ store }>
-    <App />
+    <ConnectedRouter history={ history }>
+      <App />
+    </ConnectedRouter>
   </Provider>,
   document.getElementById('root')
 )
