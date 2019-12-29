@@ -15,6 +15,6 @@ export default (preloadedState) => {
     middleware.push(logger)
   }
 
-  return createStore(rootReducerFunc(history), {}, applyMiddleware(...middleware))
+  return createStore(rootReducerFunc(history), preloadedState, applyMiddleware(...middleware))
 }
 

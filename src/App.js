@@ -1,26 +1,34 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from 'react'
+import BeerRecipeContainer from './containers/BeerRecipeContainer'
+import HomeContainer from './containers/HomeContainer'
+import NoMatch from './components/NoMatch'
+import ThemeContainer from './containers/ThemeContainer'
+import { Route, Switch } from 'react-router'
+import { connect } from 'react-redux'
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+class App extends React.Component {
+  render() {
+    const { routes } = this.props
+    return (
+      <ThemeContainer>
+        <Switch>
+          <Route exact path={ routes.root }>
+            <HomeContainer/>
+          </Route>
+          <Route path={ routes.beerRecipes }>
+            <BeerRecipeContainer/>
+          </Route>
+          <Route path='*'>
+            <NoMatch/>
+          </Route>
+        </Switch>
+      </ThemeContainer>
+    )
+  }
 }
 
-export default App;
+export default connect(
+  (state) => ({
+    routes: state.config.routes,
+  }),
+)(App);
