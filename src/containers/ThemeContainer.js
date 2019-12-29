@@ -26,7 +26,7 @@ const styles = (classes) => ({
     zIndex: 1,
     overflow: 'hidden',
     position: 'relative',
-    background: 'gray',
+    background: 'no-repeat center/100% url(/markus-spiske-0376tfLb89c-unsplash.jpg)',
     display: 'flex',
   },
   content: {
