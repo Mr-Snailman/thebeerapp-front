@@ -1,6 +1,7 @@
 import React from 'react'
 import BeerRecipeContainer from './containers/BeerRecipeContainer'
 import HomeContainer from './containers/HomeContainer'
+import NavigationContainer from './containers/NavigationContainer'
 import NoMatch from './components/NoMatch'
 import ThemeContainer from './containers/ThemeContainer'
 import { Route, Switch } from 'react-router'
@@ -11,17 +12,19 @@ class App extends React.Component {
     const { routes } = this.props
     return (
       <ThemeContainer>
-        <Switch>
-          <Route exact path={ routes.root }>
-            <HomeContainer/>
-          </Route>
-          <Route path={ routes.beerRecipes }>
-            <BeerRecipeContainer/>
-          </Route>
-          <Route path='*'>
-            <NoMatch/>
-          </Route>
-        </Switch>
+        <NavigationContainer>
+          <Switch>
+            <Route exact path={ routes.root }>
+              <HomeContainer/>
+            </Route>
+            <Route path={ routes.beerRecipes }>
+              <BeerRecipeContainer/>
+            </Route>
+            <Route path='*'>
+              <NoMatch/>
+            </Route>
+          </Switch>
+        </NavigationContainer>
       </ThemeContainer>
     )
   }

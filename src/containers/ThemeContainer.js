@@ -10,10 +10,10 @@ const theme = createMuiTheme({
     },
     type: 'light',
     primary: {
-      main: '#e7e7e7',
+      main: '#97C073',
     },
     secondary: {
-      main: indigo[400],
+      main: '#99CC66',
     },
   },
   overrides: {
